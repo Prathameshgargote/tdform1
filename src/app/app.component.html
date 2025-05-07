@@ -6,7 +6,9 @@
           <form #singUp="ngForm" (ngSubmit)="Onsubmit(singUp)">
             <div class="form-group">
               <label for="username">User Name</label>
-              <input ngModel required maxlength="12" minlength="6" pattern="[a-zA-Z]+" name="username"
+              <input
+              (keyup)="onkeyup($event)"
+               ngModel required maxlength="12" minlength="6" pattern="[a-zA-Z]+" name="username"
                 #username="ngModel" type="text" class="form-control">
 
               <strong *ngIf="username.touched&&username.hasError('required')" class="text-danger">
@@ -20,6 +22,10 @@
               <strong *ngIf="username.dirty&&username.hasError('pattern')" class="text-danger">
                 Username can only contain letters (no spaces or number or special characters).
               </strong>
+              <strong *ngIf="userlength" class="text-danger">
+                Username not allow more than 12 characters
+              </strong>
+
 
             </div>
 

@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
 })
 export class AppComponent {
  
+ userlength:boolean=false
   title = 'tdform1';
   userArr: Array<any> = []
 
@@ -21,6 +22,7 @@ export class AppComponent {
       id: '2'
     }
   ]
+
   Onsubmit(singUp: NgForm) {
     if (singUp.valid) {
       console.log(singUp);
@@ -29,5 +31,15 @@ export class AppComponent {
       singUp.reset()
     }
 
+  }
+
+  onkeyup(eve:Event){
+    console.log((eve.target as HTMLInputElement).value.length);
+    let lenght=(eve.target as HTMLInputElement).value.length
+    console.log(lenght);
+    if(lenght>=12){
+      this.userlength=true
+    }
+  
   }
 }
