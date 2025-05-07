@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -7,26 +7,27 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+ 
   title = 'tdform1';
-  userObj:Array<any>=[]
+  userArr: Array<any> = []
 
-  contactmsg=[
+  contactmsg = [
     {
-      mode:'Phome',
-      id:'1'
+      mode: 'Phone',
+      id: '1'
     },
     {
-      mode:'Email',
-      id:'2'
+      mode: 'Email',
+      id: '2'
     }
   ]
+  Onsubmit(singUp: NgForm) {
+    if (singUp.valid) {
+      console.log(singUp);
+      let obj = { ...singUp.value, subscribe: singUp.value['subscribe'] === true ? 'yes' : 'No' }
+      this.userArr.push(obj)
+      singUp.reset()
+    }
 
-  onSubmit(signup:NgForm){
-    console.log(signup);  
-  if(signup.valid){
-    let obj=signup.value
-    this.userObj.push(obj)
-    signup.resetForm()
-  }
   }
 }
